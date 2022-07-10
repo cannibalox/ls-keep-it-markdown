@@ -235,7 +235,7 @@ def keep_save_md_file(keepapi, gnote, note_labels, note_date, overwrite, skip_ex
         #print (image_url)
         image_name = gnote.title + str(idx)
         blob_file = keep_download_blob(image_url, image_name, mediapath)
-        md_text = blob_file + "\n" + md_text 
+        md_text = blob_file + "\n  " + md_text 
  
 
       print (gnote.title)
@@ -244,10 +244,12 @@ def keep_save_md_file(keepapi, gnote, note_labels, note_date, overwrite, skip_ex
   
       f=open(md_file,"w+", encoding='utf-8', errors="ignore")
       #f.write(url_to_md(url_to_md(note_text, "http://"), "https://") + "\n")
-      f.write(url_to_md(md_text) + "\n")
-      f.write("\n" + note_labels + "\n\n")
-      f.write("Created: " + str(gnote.timestamps.created) + "      Updated: " + str(gnote.timestamps.updated) + "\n\n")
-      f.write("["+ KEEP_NOTE_URL + str(gnote.id) + "](" + KEEP_NOTE_URL + str(gnote.id) + ")\n\n")
+      note_labels = re.sub("\s+", ", ", note_labels.strip())
+      f.write("tags:: " + note_labels + "\n")
+      f.write("Created:: [[" + str(gnote.timestamps.created).replace("-","")[:-16] + "]]\n")
+      f.write("Updated:: [[" + str(gnote.timestamps.updated).replace("-","")[:-16] + "]]\n")
+      f.write("Link:: "+ KEEP_NOTE_URL + str(gnote.id) + ")\n\n")
+      f.write("- " + url_to_md(md_text) + "\n")
       f.close
       return(1)
     except Exception as e:
