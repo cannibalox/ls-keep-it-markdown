@@ -1,3 +1,5 @@
+a fork of djsudduth's `keep-it-markdown` script, customized to convert google keep notes to Logseq. 
+
 [![GitHub license](https://img.shields.io/github/license/djsudduth/keep-it-markdown)](https://github.com/djsudduth/keep-it-markdown/blob/main/LICENSE)
 
 # keep-it-markdown
