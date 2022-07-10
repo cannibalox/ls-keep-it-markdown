@@ -245,9 +245,9 @@ def keep_save_md_file(keepapi, gnote, note_labels, note_date, overwrite, skip_ex
       f=open(md_file,"w+", encoding='utf-8', errors="ignore")
       #f.write(url_to_md(url_to_md(note_text, "http://"), "https://") + "\n")
       note_labels = re.sub("\s+", ", ", note_labels.strip())
-      f.write("tags:: " + note_labels + "\n")
+      f.write("tags:: #gkeep, " + note_labels + "\n")
       f.write("Created:: [[" + str(gnote.timestamps.created).replace("-","")[:-16] + "]]\n")
-      f.write("Updated:: [[" + str(gnote.timestamps.updated).replace("-","")[:-16] + "]]\n")
+      #f.write("Updated:: [[" + str(gnote.timestamps.updated).replace("-","")[:-16] + "]]\n")
       f.write("Link:: "+ KEEP_NOTE_URL + str(gnote.id) + ")\n\n")
       f.write("- " + url_to_md(md_text) + "\n")
       f.close
